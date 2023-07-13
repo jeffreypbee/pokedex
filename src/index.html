@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://unpkg.com/pokeapi-js-wrapper/dist/index.js"></script>
+    <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+    <title>Pokedex</title>
+</head>
+<body>
+    <aside id="filter_menu">
+        <div id="filter_options">
+        <button name="refresh" id="refresh_pokedex" onClick="refreshPokedex()">Refresh</button>
+        <button name="gen_1" id="gen_1" onClick="filterByGeneration(1)">Gen. 1</button>
+        <button name="gen_2" id="gen_2" onClick="filterByGeneration(2)">Gen. 2</button>
+        <button name="gen_3" id="gen_3" onClick="filterByGeneration(3)">Gen. 3</button>
+        <button name="gen_4" id="gen_4" onClick="filterByGeneration(4)">Gen. 4</button>
+        <button name="gen_5" id="gen_5" onClick="filterByGeneration(5)">Gen. 5</button>
+        <button name="gen_6" id="gen_6" onClick="filterByGeneration(6)">Gen. 6</button>
+        <button name="gen_7" id="gen_7" onClick="filterByGeneration(7)">Gen. 7</button>
+        <button name="gen_8" id="gen_8" onClick="filterByGeneration(8)">Gen. 8</button>
+        <button name="gen_9" id="gen_9" onClick="filterByGeneration(9)">Gen. 9</button>
+        </div>
+        <div id="toggle_filter_menu"><button id="toggle_filter_menu_button" onClick="toggleFilterMenu()">></button></div>
+    </aside>
+    <div class="pokedex_container">
+    <div id="pokedex">
+
+    
+
+    </div> 
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
