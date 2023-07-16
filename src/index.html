@@ -11,28 +11,43 @@
     <title>Pokedex</title>
 </head>
 <body>
+    <header>
+        <h1>POKEDEX</h1>
+        <input type="text" name="searchbar" id="searchbar">
+    </header>
     <aside id="filter_menu">
+        
         <div id="filter_options">
-        <button name="refresh" id="refresh_pokedex" onClick="refreshPokedex()">Refresh</button>
-        <button name="gen_1" id="gen_1" onClick="filterByGeneration(1)">Gen. 1</button>
-        <button name="gen_2" id="gen_2" onClick="filterByGeneration(2)">Gen. 2</button>
-        <button name="gen_3" id="gen_3" onClick="filterByGeneration(3)">Gen. 3</button>
-        <button name="gen_4" id="gen_4" onClick="filterByGeneration(4)">Gen. 4</button>
-        <button name="gen_5" id="gen_5" onClick="filterByGeneration(5)">Gen. 5</button>
-        <button name="gen_6" id="gen_6" onClick="filterByGeneration(6)">Gen. 6</button>
-        <button name="gen_7" id="gen_7" onClick="filterByGeneration(7)">Gen. 7</button>
-        <button name="gen_8" id="gen_8" onClick="filterByGeneration(8)">Gen. 8</button>
-        <button name="gen_9" id="gen_9" onClick="filterByGeneration(9)">Gen. 9</button>
+            <h2>Filter Options</h2>
+            <button name="refresh" id="refresh_pokedex" onClick="refreshPokedex()">Refresh</button>
+            <div id="filter_by_generation">
+                <h3>Generation</h3>
+                <button name="gen_1" id="gen_1" onClick="filterByGeneration(1)">1</button>
+                <button name="gen_2" id="gen_2" onClick="filterByGeneration(2)">2</button>
+                <button name="gen_3" id="gen_3" onClick="filterByGeneration(3)">3</button>
+                <button name="gen_4" id="gen_4" onClick="filterByGeneration(4)">4</button>
+                <button name="gen_5" id="gen_5" onClick="filterByGeneration(5)">5</button>
+                <button name="gen_6" id="gen_6" onClick="filterByGeneration(6)">6</button>
+                <button name="gen_7" id="gen_7" onClick="filterByGeneration(7)">7</button>
+                <button name="gen_8" id="gen_8" onClick="filterByGeneration(8)">8</button>
+                <button name="gen_9" id="gen_9" onClick="filterByGeneration(9)">9</button>
+            </div>
+            <div id="filter_by_type">
+                <h3>Type</h3>
+            </div>
         </div>
-        <div id="toggle_filter_menu"><button id="toggle_filter_menu_button" onClick="toggleFilterMenu()">></button></div>
+        <div id="toggle_filter_menu" onClick="toggleFilterMenu()">>
+            <!--button id="toggle_filter_menu_button" onClick="toggleFilterMenu()">></button-->
+        </div>
     </aside>
     <div class="pokedex_container">
-    <div id="pokedex">
+        <div id="pokedex">
 
     
 
-    </div> 
+        </div> 
     </div>
+    <footer>Copyright &copy; 2023 Jeffrey Bee</footer>
     
     <script src="script.js"></script>
 </body>
