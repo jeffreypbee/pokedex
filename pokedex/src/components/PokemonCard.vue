@@ -1,15 +1,11 @@
 <template>
-    <div class="pokemon-card" :style="cardBackground">
+  <div class="pokemon-card" :style="cardBackground">
     <div class="pokedex-number">{{ formattedPokedexNumber }}</div>
     <div class="pokemon-info">
       <div class="pokemon-name">{{ pokemon.name }}</div>
       <img
         class="pokemon-image"
-        :src="
-          'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' +
-          pokemon.number +
-          '.png'
-        "
+        :src="fullSpritePath"
         :alt="pokemon.name"
         :title="pokemon.name"
       />
@@ -34,8 +30,8 @@
 
 <script>
 export default {
-    name: "pokemon-card",
-  props: ["pokemon"],
+  name: "pokemon-card",
+  props: ["pokemon", "spritetype"],
   computed: {
     formattedPokedexNumber() {
       const number = this.pokemon.number;
@@ -72,8 +68,32 @@ export default {
       }
       return cardBackground;
     },
-  }
-}
+    fullSpritePath() {
+      if (this.spritetype === "official-artwork") {
+        return (
+          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" +
+          this.pokemon.number +
+          ".png"
+        );
+      }
+      if (this.spritetype === "home") {
+        return (
+          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/" +
+          this.pokemon.number +
+          ".png"
+        );
+      }
+      if (this.spritetype === "showdown") {
+        return (
+          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/" +
+          this.pokemon.number +
+          ".gif"
+        );
+      }
+      return "";
+    },
+  },
+};
 
 function getTypeColor(type) {
   switch (type) {
@@ -132,10 +152,10 @@ function getTypeColor(type) {
   border-radius: 15px;
   width: 120px;
   height: 170px;
-  border: 1px solid white;
+  border: 2px solid white;
 }
 .pokemon-card:hover {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(110, 96, 128, 0.3), 0 6px 20px 0 rgba(110, 96, 128, 0.3);
 }
 .pokemon-info {
   grid-area: info;
@@ -150,8 +170,8 @@ function getTypeColor(type) {
 .pokedex-number {
   grid-area: number;
   background-color: white;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
   width: 100%;
   font-size: 0.7rem;
   text-align: center;
@@ -183,7 +203,7 @@ function getTypeColor(type) {
     drop-shadow(-1px 0 0 white) drop-shadow(0 -1px 0 white);
 }
 .pokemon-image:hover {
-  scale: 130%;
+  scale: 140%;
 }
 .type-icon {
   height: 15px;
