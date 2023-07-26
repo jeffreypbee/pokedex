@@ -1,22 +1,24 @@
 <template>
   <div class="pokedex-container">
-      <div id="entry-count">{{filteredPokedex.length}} {{filteredPokedex.length == 1 ? 'entry' : 'entries'}}</div>
-      <div id="pokedex-view">
       
-      <PokemonCard v-for="(pokemon, index) in filteredPokedex" v-bind:key="index" :pokemon="pokemon" :spritetype="view.sprite" />
+      <div id="pokedex-view">
+      <EntryCount :count="filteredPokedex.length" />
+      <PokemonCard v-for="(pokemon, index) in filteredPokedex" v-bind:key="index" :pokemon="pokemon" />
       </div>
   </div>
 </template>
 
 <script>
+import EntryCount from './EntryCount.vue'
 import PokemonCard from './PokemonCard.vue'
 
 export default {
     components: { 
+        EntryCount,
         PokemonCard 
     },
     name: 'pokedex-view',
-    props: ['pokedex', 'view'],
+    props: ['pokedex'],
     computed: {
         filteredPokedex() {
             const filters = this.$store.state.filters;

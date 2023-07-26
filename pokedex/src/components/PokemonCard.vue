@@ -7,7 +7,7 @@
       <div v-if="pokemon.formName" class="form-name">{{pokemon.formName}}</div>
       <img
         class="pokemon-image"
-        :class="{'image-outline' : spritetype != 'artwork', 'my-artwork' : spritetype === 'artwork'}"
+        :class="{'image-outline' : this.$store.state.view.sprite != 'artwork', 'my-artwork' : this.$store.state.view.sprite === 'artwork'}"
         :src="fullSpritePath"
         :alt="pokemon.name"
         :title="pokemon.name"
@@ -34,7 +34,7 @@
 <script>
 export default {
   name: "pokemon-card",
-  props: ["pokemon", "spritetype"],
+  props: ["pokemon"],
   computed: {
     formattedPokedexNumber() {
       const number = this.pokemon.number;
@@ -72,28 +72,28 @@ export default {
       return cardBackground;
     },
     fullSpritePath() {
-      if (this.spritetype === "official-artwork") {
+      if (this.$store.state.view.sprite === "official-artwork") {
         return (
           "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" +
           this.pokemon.number +
           ".png"
         );
       }
-      if (this.spritetype === "home") {
+      if (this.$store.state.view.sprite === "home") {
         return (
           "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/" +
           this.pokemon.number +
           ".png"
         );
       }
-      if (this.spritetype === "showdown") {
+      if (this.$store.state.view.sprite === "showdown") {
         return (
           "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/" +
           this.pokemon.number +
           ".gif"
         );
       }
-      if (this.spritetype === "artwork") {
+      if (this.$store.state.view.sprite === "artwork") {
         return (
           "/images/my_art/" +
           this.formattedPokedexNumber +

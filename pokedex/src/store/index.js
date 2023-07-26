@@ -12,6 +12,9 @@ export default new Vuex.Store({
       types: [],
       filterTypeAnd: false
     },
+    view: {
+      sprite: 'official-artwork'
+    },
     types: [
       {name:'bug', color: "#92BC2C"}, 
       {name:'dark', color: "#595761"}, 
@@ -111,6 +114,9 @@ export default new Vuex.Store({
     },
     TOGGLE_FILTER_TYPE_AND(state) {
       state.filters.filterTypeAnd = !state.filters.filterTypeAnd;
+    },
+    SET_VIEW_SPRITE(state, sprite) {
+      state.view.sprite = sprite;
     }
   },
   actions: {
