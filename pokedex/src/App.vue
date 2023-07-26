@@ -8,16 +8,26 @@
       <div id="menus-container" v-if="displayMenus">
       <div id="filter-menu">
         <h2>Filter</h2>
-        <div id="filter-name"><input type="text" placeholder="Name" v-model="filters.name" /></div>
+        <div id="filter-name">
+          <input type="number" placeholder="Number" min="1" v-model="filters.number" />
+          <input type="text" placeholder="Name" v-model="filters.name" />
+        </div>
         <div id="filter-generation">
-        Generation
-        <button @click="resetGenerationFilter()" id="all-generations-button" :class="{selected : filters.generations.length < 1}">All</button>
-        <button v-for="generation in generations" :key="generation.gen" @click="filterByGeneration(generation)" :class="{selected : filters.generations.includes(generation)}">{{generation.gen}}</button>
+        <h3>Generation</h3>
+        <p>
+          <button @click="resetGenerationFilter()" id="all-generations-button" :class="{selected : filters.generations.length < 1}">All</button>
+          <button v-for="generation in generations" :key="generation.gen" @click="filterByGeneration(generation)" :class="{selected : filters.generations.includes(generation)}">{{generation.gen}}</button>
+        </p>
         </div>
         <div id="filter-type">
-        Type
-        <button id="all-types-button" :class="{selected: filters.types.length < 1}" @click="resetTypeFilter">All</button>
-        <img v-for="(type, index) in types" :key="index" :class="{selected : filters.types.includes(type.name)}" @click="filterByType(type.name)" :alt="type.name" :title="type.name" :src="type.icon">
+        <h3>Type</h3>
+        <p>
+          <button id="all-types-button" :class="{selected: filters.types.length < 1}" @click="resetTypeFilter">All</button>
+          <input type="checkbox" id="filter-types-and" v-model="filters.filterTypeAnd"><label for="filter-types-and">And</label>
+        </p>
+        <p>
+          <img v-for="(type, index) in types" :key="index" :class="{selected : filters.types.includes(type.name)}" @click="filterByType(type.name)" :alt="type.name" :title="type.name" :src="type.icon">
+        </p>
         </div>
       </div>
       <div class="view-menu">
@@ -26,6 +36,7 @@
           <option value="official-artwork">Official Artwork</option>
           <option value="home">Pokemon Home</option>
           <option value="showdown">Showdown</option>
+          <option value="artwork">My Artwork</option>
         </select>
       </div>
       </div>
@@ -150,9 +161,21 @@ export default {
           types: ["normal"],
         },
         {
+          name: 'Rattata',
+          formName: 'Alolan',
+          number: 19,
+          types: ['dark', 'normal']
+        },
+        {
           name: "Raticate",
           number: 20,
           types: ["normal"],
+        },
+        {
+          name: 'Raticate',
+          formName: 'Alolan',
+          number: 20,
+          types: ['dark', 'normal']
         },
         {
           name: "Spearow",
@@ -185,14 +208,32 @@ export default {
           types: ["electric"],
         },
         {
+          name: "Raichu",
+          formName: 'Alolan',
+          number: 26,
+          types: ["electric", 'psychic'],
+        },
+        {
           name: "Sandshrew",
           number: 27,
           types: ["ground"],
         },
         {
+          name: "Sandshrew",
+          formName: 'Alolan',
+          number: 27,
+          types: ["ice", 'steel'],
+        },
+        {
           name: "Sandslash",
           number: 28,
           types: ["ground"],
+        },
+        {
+          name: "Sandslash",
+          formName: 'Alolan',
+          number: 28,
+          types: ["ice", 'steel'],
         },
         {
           name: "Walking Wake",
@@ -273,9 +314,11 @@ export default {
         {name:'water', icon: require("./assets/type_icons/water.png")}
       ],
       filters: {
+        number: 0,
         name: "",
         generations: [],
-        types: []
+        types: [],
+        filterTypeAnd: false
       },
       view: {
         sprite: "official-artwork",
@@ -386,6 +429,12 @@ header a {
   margin-top: 0px;
   font-size: 1rem;
 }
+#menus h3 {
+  margin: 5px;
+}
+#menus p {
+  margin: 5px;
+}
 .toggle-menus {
   font-weight: bold;
   width: 100%;
@@ -400,6 +449,9 @@ header a {
   background-color: red;
   color: white;
 }
+#filter-name {
+  margin-bottom: 5px;
+}
 
 #filter-menu {
   display: flex;
@@ -407,11 +459,13 @@ header a {
 }
 #filter-generation {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  border-top: 1px solid #aaa;
 }
 #filter-type {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  border-top: 1px solid #aaa;
 }
 #filter-type img {
   width: 25px;

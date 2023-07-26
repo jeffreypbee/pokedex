@@ -2,9 +2,12 @@
   <div class="pokemon-card" :style="cardBackground">
     <div class="pokedex-number">{{ formattedPokedexNumber }}</div>
     <div class="pokemon-info">
+      
       <div class="pokemon-name">{{ pokemon.name }}</div>
+      <div v-if="pokemon.formName" class="form-name">{{pokemon.formName}}</div>
       <img
         class="pokemon-image"
+        :class="{'image-outline' : spritetype != 'artwork', 'my-artwork' : spritetype === 'artwork'}"
         :src="fullSpritePath"
         :alt="pokemon.name"
         :title="pokemon.name"
@@ -90,6 +93,13 @@ export default {
           ".gif"
         );
       }
+      if (this.spritetype === "artwork") {
+        return (
+          "/images/my_art/" +
+          this.formattedPokedexNumber +
+          ".png"
+        );
+      }
       return "";
     },
   },
@@ -142,6 +152,7 @@ function getTypeColor(type) {
 <style>
 .pokemon-card {
   display: grid;
+  position: relative;
   grid-template-columns: 1fr;
   grid-template-areas:
     "number"
@@ -181,6 +192,10 @@ function getTypeColor(type) {
   font-size: 0.8rem;
   font-weight: bold;
 }
+.form-name {
+  position: absolute;
+  top: 35px;
+}
 .pokemon-types {
   grid-area: types;
   height: 15px;
@@ -199,8 +214,13 @@ function getTypeColor(type) {
   width: 100px;
   margin-top: 5px;
   z-index: 2;
+}
+.image-outline {
   filter: drop-shadow(1px 0 0 white) drop-shadow(0 1px 0 white)
     drop-shadow(-1px 0 0 white) drop-shadow(0 -1px 0 white);
+}
+.my-artwork {
+  scale: 130%;
 }
 .pokemon-image:hover {
   scale: 140%;

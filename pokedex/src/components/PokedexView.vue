@@ -20,6 +20,11 @@ export default {
     computed: {
         filteredPokedex() {
             let filteredList = this.pokedex;
+            if (this.filters.number > 0) {
+                filteredList = filteredList.filter((pokemon) => {
+                    return pokemon.number == this.filters.number;
+                });
+            }
             if (this.filters.name !== '') {
                 filteredList = filteredList.filter((pokemon) => {
                     return pokemon.name.toLowerCase().includes(this.filters.name.toLowerCase());
@@ -35,13 +40,24 @@ export default {
                 });
             }
             if (this.filters.types.length > 0) {
-                filteredList = filteredList.filter((pokemon) => {
-                    for (let i = 0; i < this.filters.types.length; i++) {
-                        if (pokemon.types.includes(this.filters.types[i])) {
-                            return true;
+                if (this.filters.filterTypeAnd) {
+                    filteredList = filteredList.filter((pokemon) => {
+                        for (let i = 0; i < this.filters.types.length; i++) {
+                            if (!pokemon.types.includes(this.filters.types[i])) {
+                                return false;
+                            }
                         }
-                    }
-                });
+                         return true;
+                    });
+                } else {
+                    filteredList = filteredList.filter((pokemon) => {
+                        for (let i = 0; i < this.filters.types.length; i++) {
+                            if (pokemon.types.includes(this.filters.types[i])) {
+                                return true;
+                            }
+                        }
+                    });
+                }
             }
             return filteredList;
         }
