@@ -16,34 +16,35 @@ export default {
         PokemonCard 
     },
     name: 'pokedex-view',
-    props: ['pokedex', 'filters', 'view'],
+    props: ['pokedex', 'view'],
     computed: {
         filteredPokedex() {
+            const filters = this.$store.state.filters;
             let filteredList = this.pokedex;
-            if (this.filters.number > 0) {
+            if (filters.number > 0) {
                 filteredList = filteredList.filter((pokemon) => {
-                    return pokemon.number == this.filters.number;
+                    return pokemon.number == filters.number;
                 });
             }
-            if (this.filters.name !== '') {
+            if (filters.name !== '') {
                 filteredList = filteredList.filter((pokemon) => {
-                    return pokemon.name.toLowerCase().includes(this.filters.name.toLowerCase());
+                    return pokemon.name.toLowerCase().includes(filters.name.toLowerCase());
                 });
             }
-            if (this.filters.generations.length > 0) {
+            if (filters.generations.length > 0) {
                 filteredList = filteredList.filter((pokemon) => {
-                    for (let i = 0; i < this.filters.generations.length; i++) {
-                        if (pokemon.number >= this.filters.generations[i].startsAt && pokemon.number <= this.filters.generations[i].endsAt) {
+                    for (let i = 0; i < filters.generations.length; i++) {
+                        if (pokemon.number >= filters.generations[i].startsAt && pokemon.number <= filters.generations[i].endsAt) {
                             return true;
                         }
                     }
                 });
             }
-            if (this.filters.types.length > 0) {
-                if (this.filters.filterTypeAnd) {
+            if (filters.types.length > 0) {
+                if (filters.filterTypeAnd) {
                     filteredList = filteredList.filter((pokemon) => {
-                        for (let i = 0; i < this.filters.types.length; i++) {
-                            if (!pokemon.types.includes(this.filters.types[i])) {
+                        for (let i = 0; i < filters.types.length; i++) {
+                            if (!pokemon.types.includes(filters.types[i])) {
                                 return false;
                             }
                         }
@@ -51,8 +52,8 @@ export default {
                     });
                 } else {
                     filteredList = filteredList.filter((pokemon) => {
-                        for (let i = 0; i < this.filters.types.length; i++) {
-                            if (pokemon.types.includes(this.filters.types[i])) {
+                        for (let i = 0; i < filters.types.length; i++) {
+                            if (pokemon.types.includes(filters.types[i])) {
                                 return true;
                             }
                         }

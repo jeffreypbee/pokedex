@@ -9,24 +9,24 @@
       <div id="filter-menu">
         <h2>Filter</h2>
         <div id="filter-name">
-          <input type="number" placeholder="Number" min="1" v-model="filters.number" />
-          <input type="text" placeholder="Name" v-model="filters.name" />
+          <input type="number" placeholder="Number" id="filter-number" min="1" v-model="filterNumber" />
+          <input type="text" placeholder="Name" id="filter-name" v-model="filterName" />
         </div>
         <div id="filter-generation">
         <h3>Generation</h3>
         <p>
-          <button @click="resetGenerationFilter()" id="all-generations-button" :class="{selected : filters.generations.length < 1}">All</button>
-          <button v-for="generation in generations" :key="generation.gen" @click="filterByGeneration(generation)" :class="{selected : filters.generations.includes(generation)}">{{generation.gen}}</button>
+          <button @click="$store.commit('RESET_GENERATION_FILTER')" id="all-generations-button" :class="{selected : $store.state.filters.generations.length < 1}">All</button>
+          <button v-for="generation in $store.state.generations" :key="generation.gen" @click="$store.commit('FILTER_BY_GENERATION', generation)" :class="{selected : $store.state.filters.generations.includes(generation)}">{{generation.gen}}</button>
         </p>
         </div>
         <div id="filter-type">
         <h3>Type</h3>
         <p>
-          <button id="all-types-button" :class="{selected: filters.types.length < 1}" @click="resetTypeFilter">All</button>
-          <input type="checkbox" id="filter-types-and" v-model="filters.filterTypeAnd"><label for="filter-types-and">And</label>
+          <button id="all-types-button" :class="{selected: $store.state.filters.types.length < 1}" @click="$store.commit('RESET_TYPE_FILTER')">All</button>
+          <input type="checkbox" id="filter-types-and" @change="$store.commit('TOGGLE_FILTER_TYPE_AND')"><label for="filter-types-and">And</label>
         </p>
         <p>
-          <img v-for="(type, index) in types" :key="index" :class="{selected : filters.types.includes(type.name)}" @click="filterByType(type.name)" :alt="type.name" :title="type.name" :src="type.icon">
+          <img v-for="(type, index) in $store.state.types" :key="index" :class="{selected : $store.state.filters.types.includes(type.name)}" @click="$store.commit('FILTER_BY_TYPE', type.name)" :alt="type.name" :title="type.name" :src="require('./assets/type_icons/' + type.name +'.png')">
         </p>
         </div>
       </div>
@@ -45,7 +45,6 @@
     <PokedexView
       class="pokedex-container"
       :pokedex="pokedex"
-      :filters="filters"
       :view="view"
     />
 
@@ -246,80 +245,6 @@ export default {
           types: ["grass", "psychic"],
         },
       ],
-      generations: [
-        {
-          gen: 1,
-          startsAt: 1,
-          endsAt: 151,
-        },
-        {
-          gen: 2,
-          startsAt: 152,
-          endsAt: 251,
-        },
-        {
-          gen: 3,
-          startsAt: 252,
-          endsAt: 386,
-        },
-        {
-          gen: 4,
-          startsAt: 387,
-          endsAt: 493,
-        },
-        {
-          gen: 5,
-          startsAt: 494,
-          endsAt: 649,
-        },
-        {
-          gen: 6,
-          startsAt: 650,
-          endsAt: 721,
-        },
-        {
-          gen: 7,
-          startsAt: 722,
-          endsAt: 809,
-        },
-        {
-          gen: 8,
-          startsAt: 810,
-          endsAt: 905,
-        },
-        {
-          gen: 9,
-          startsAt: 906,
-          endsAt: 1010,
-        },
-      ],
-      types: [
-        {name:'bug', icon: require("./assets/type_icons/bug.png")}, 
-        {name:'dark', icon: require("./assets/type_icons/dark.png")}, 
-        {name:'dragon', icon: require("./assets/type_icons/dragon.png")}, 
-        {name:'electric', icon: require("./assets/type_icons/electric.png")}, 
-        {name:'fairy', icon: require("./assets/type_icons/fairy.png")}, 
-        {name:'fighting', icon: require("./assets/type_icons/fighting.png")}, 
-        {name:'fire', icon: require("./assets/type_icons/fire.png")}, 
-        {name:'flying', icon: require("./assets/type_icons/flying.png")}, 
-        {name:'ghost', icon: require("./assets/type_icons/ghost.png")}, 
-        {name:'grass', icon: require("./assets/type_icons/grass.png")}, 
-        {name:'ground', icon: require("./assets/type_icons/ground.png")}, 
-        {name:'ice', icon: require("./assets/type_icons/ice.png")}, 
-        {name:'normal', icon: require("./assets/type_icons/normal.png")}, 
-        {name:'poison', icon: require("./assets/type_icons/poison.png")}, 
-        {name:'psychic', icon: require("./assets/type_icons/psychic.png")}, 
-        {name:'rock', icon: require("./assets/type_icons/rock.png")}, 
-        {name:'steel', icon: require("./assets/type_icons/steel.png")}, 
-        {name:'water', icon: require("./assets/type_icons/water.png")}
-      ],
-      filters: {
-        number: 0,
-        name: "",
-        generations: [],
-        types: [],
-        filterTypeAnd: false
-      },
       view: {
         sprite: "official-artwork",
       },
@@ -327,29 +252,24 @@ export default {
     };
   },
   computed: {
-        
+        filterName: {
+          get() {
+            return this.$store.state.filters.name;
+          },
+          set(value) {
+            this.$store.commit('FILTER_BY_NAME', value);
+          }
+        },
+        filterNumber: {
+          get() {
+            return this.$store.state.filters.number;
+          },
+          set(value) {
+            this.$store.commit('FILTER_BY_NUMBER', value);
+          }
+        }
   },
   methods: {
-    filterByType(type) {
-      if(this.filters.types.includes(type)) {
-        this.filters.types.splice(this.filters.types.indexOf(type), 1);
-      } else {
-        this.filters.types.push(type);
-      }
-    },
-    filterByGeneration(generation) {
-      if(this.filters.generations.includes(generation)) {
-        this.filters.generations.splice(this.filters.generations.indexOf(generation), 1);
-      } else {
-        this.filters.generations.push(generation);
-      }
-    },
-    resetTypeFilter() {
-      this.filters.types =[];
-    },
-    resetGenerationFilter() {
-      this.filters.generations = [];
-    }
   }
 };
 </script>
