@@ -25,7 +25,7 @@ export default {
             let filteredList = this.pokedex;
             if (filters.number > 0) {
                 filteredList = filteredList.filter((pokemon) => {
-                    return pokemon.number == filters.number;
+                    return pokemon.id == filters.number;
                 });
             }
             if (filters.name !== '') {
@@ -36,7 +36,7 @@ export default {
             if (filters.generations.length > 0) {
                 filteredList = filteredList.filter((pokemon) => {
                     for (let i = 0; i < filters.generations.length; i++) {
-                        if (pokemon.number >= filters.generations[i].startsAt && pokemon.number <= filters.generations[i].endsAt) {
+                        if (pokemon.id >= filters.generations[i].startsAt && pokemon.id <= filters.generations[i].endsAt) {
                             return true;
                         }
                     }

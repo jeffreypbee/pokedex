@@ -84,6 +84,10 @@ export default new Vuex.Store({
     ],
   },
   getters: {
+    getTypeColor: (state) => (typeName) => {
+      const type = state.types.find((type) => type.name === typeName);
+      return type.color;
+    }
   },
   mutations: {
     FILTER_BY_NAME(state, name) {

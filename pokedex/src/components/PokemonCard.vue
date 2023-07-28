@@ -16,16 +16,16 @@
     <div class="pokemon-types">
       <div
         class="pokemon-type"
-        v-for="(type, index) in typeObjects"
+        v-for="(type, index) in pokemon.types"
         :key="index"
       >
         <img
           class="type-icon"
-          :src="type.icon"
-          :alt="type.name"
-          :title="type.name"
+          :src="require('../assets/type_icons/' + type.type.name +'.png')"
+          :alt="type.type.name"
+          :title="type.type.name"
         />
-        {{ type.name }}
+        {{ type.type.name }}
       </div>
     </div>
   </div>
@@ -37,7 +37,7 @@ export default {
   props: ["pokemon"],
   computed: {
     formattedPokedexNumber() {
-      const number = this.pokemon.number;
+      const number = this.pokemon.id;
       if (number < 10) {
         return "000" + number;
       }
@@ -49,47 +49,40 @@ export default {
       }
       return number;
     },
-    typeObjects() {
-      const typeObjects = [];
-      this.pokemon.types.forEach((type) => {
-        const typeObject = {};
-        typeObject.name = type;
-        typeObject.color = getTypeColor(type);
-        typeObject.icon = require("../assets/type_icons/" + type + ".png");
-        typeObjects.push(typeObject);
-      });
-
-      return typeObjects;
-    },
     cardBackground() {
       const cardBackground = {};
-      if (this.typeObjects.length === 1) {
-        cardBackground.backgroundColor = this.typeObjects[0].color;
-      } else if (this.typeObjects.length === 2) {
-        let gradient = `linear-gradient(to right, ${this.typeObjects[0].color}, ${this.typeObjects[1].color})`;
+      cardBackground.backgroundColor = "white";
+      const color1 = this.$store.getters.getTypeColor(this.pokemon.types[0].type.name);
+      if (this.pokemon.types.length === 1) {
+        cardBackground.backgroundColor = color1;
+      } else if (this.pokemon.types.length === 2) {
+        const color2 = this.$store.getters.getTypeColor(this.pokemon.types[1].type.name)
+        const gradient = `linear-gradient(to right, ${color1}, ${color2})`;
         cardBackground.background = gradient;
+        
       }
+      
       return cardBackground;
     },
     fullSpritePath() {
       if (this.$store.state.view.sprite === "official-artwork") {
         return (
           "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" +
-          this.pokemon.number +
+          this.pokemon.id +
           ".png"
         );
       }
       if (this.$store.state.view.sprite === "home") {
         return (
           "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/" +
-          this.pokemon.number +
+          this.pokemon.id +
           ".png"
         );
       }
       if (this.$store.state.view.sprite === "showdown") {
         return (
           "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/" +
-          this.pokemon.number +
+          this.pokemon.id +
           ".gif"
         );
       }
@@ -105,48 +98,6 @@ export default {
   },
 };
 
-function getTypeColor(type) {
-  switch (type) {
-    case "normal":
-      return "#A0A29F";
-    case "bug":
-      return "#92BC2C";
-    case "dark":
-      return "#595761";
-    case "dragon":
-      return "#0C69C8";
-    case "electric":
-      return "#F2D94E";
-    case "fire":
-      return "#FBA54C";
-    case "fairy":
-      return "#EE90E6";
-    case "fighting":
-      return "#D3425F";
-    case "flying":
-      return "#A1BBEC";
-    case "ghost":
-      return "#5F6DBC";
-    case "grass":
-      return "#5FBD58";
-    case "ground":
-      return "#DA7C4D";
-    case "ice":
-      return "#75D0C1";
-    case "poison":
-      return "#B763CF";
-    case "psychic":
-      return "#FA8581";
-    case "rock":
-      return "#C9BB8A";
-    case "steel":
-      return "#5695A3";
-    case "water":
-      return "#539DDF";
-    default:
-      return "#ffffff";
-  }
-}
 </script>
 
 <style>

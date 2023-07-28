@@ -2,7 +2,7 @@
   <div id="app">
     <PageHeader />
     <MenusContainer />
-    <PokedexView :pokedex="pokedex" />
+    <PokedexView :pokedex="apiPokedex" />
 
     <PageFooter />
   </div>
@@ -24,198 +24,43 @@ export default {
   },
   data() {
     return {
-      pokedex: [
-        {
-          name: "Bulbasaur",
-          number: 1,
-          types: ["grass", "poison"],
-        },
-        {
-          name: "Ivysaur",
-          number: 2,
-          types: ["grass", "poison"],
-        },
-        {
-          name: "Venusaur",
-          number: 3,
-          types: ["grass", "poison"],
-        },
-        {
-          name: "Charmander",
-          number: 4,
-          types: ["fire"],
-        },
-        {
-          name: "Charmeleon",
-          number: 5,
-          types: ["fire"],
-        },
-        {
-          name: "Charizard",
-          number: 6,
-          types: ["fire", "flying"],
-        },
-        {
-          name: "Squirtle",
-          number: 7,
-          types: ["water"],
-        },
-        {
-          name: "Wartortle",
-          number: 8,
-          types: ["water"],
-        },
-        {
-          name: "Blastoise",
-          number: 9,
-          types: ["water"],
-        },
-        {
-          name: "Caterpie",
-          number: 10,
-          types: ["bug"],
-        },
-        {
-          name: "Metapod",
-          number: 11,
-          types: ["bug"],
-        },
-        {
-          name: "Butterfree",
-          number: 12,
-          types: ["bug", "flying"],
-        },
-        {
-          name: "Weedle",
-          number: 13,
-          types: ["bug", "poison"],
-        },
-        {
-          name: "Kakuna",
-          number: 14,
-          types: ["bug", "poison"],
-        },
-        {
-          name: "Beedrill",
-          number: 15,
-          types: ["bug", "poison"],
-        },
-        {
-          name: "Pidgey",
-          number: 16,
-          types: ["normal", "flying"],
-        },
-        {
-          name: "Pidgeotto",
-          number: 17,
-          types: ["normal", "flying"],
-        },
-        {
-          name: "Pidgeot",
-          number: 18,
-          types: ["normal", "flying"],
-        },
-        {
-          name: "Rattata",
-          number: 19,
-          types: ["normal"],
-        },
-        {
-          name: 'Rattata',
-          formName: 'Alolan',
-          number: 19,
-          types: ['dark', 'normal']
-        },
-        {
-          name: "Raticate",
-          number: 20,
-          types: ["normal"],
-        },
-        {
-          name: 'Raticate',
-          formName: 'Alolan',
-          number: 20,
-          types: ['dark', 'normal']
-        },
-        {
-          name: "Spearow",
-          number: 21,
-          types: ["normal", "flying"],
-        },
-        {
-          name: "Fearow",
-          number: 22,
-          types: ["normal", "flying"],
-        },
-        {
-          name: "Ekans",
-          number: 23,
-          types: ["poison"],
-        },
-        {
-          name: "Arbok",
-          number: 24,
-          types: ["poison"],
-        },
-        {
-          name: "Pikachu",
-          number: 25,
-          types: ["electric"],
-        },
-        {
-          name: "Raichu",
-          number: 26,
-          types: ["electric"],
-        },
-        {
-          name: "Raichu",
-          formName: 'Alolan',
-          number: 26,
-          types: ["electric", 'psychic'],
-        },
-        {
-          name: "Sandshrew",
-          number: 27,
-          types: ["ground"],
-        },
-        {
-          name: "Sandshrew",
-          formName: 'Alolan',
-          number: 27,
-          types: ["ice", 'steel'],
-        },
-        {
-          name: "Sandslash",
-          number: 28,
-          types: ["ground"],
-        },
-        {
-          name: "Sandslash",
-          formName: 'Alolan',
-          number: 28,
-          types: ["ice", 'steel'],
-        },
-        {
-          name: "Walking Wake",
-          number: 1009,
-          types: ["water", "dragon"],
-        },
-        {
-          name: "Iron Leaves",
-          number: 1010,
-          types: ["grass", "psychic"],
-        },
-      ],
-      view: {
-        sprite: "official-artwork",
-      },
-      
+      pokedex: [],
+      apiPokedex: []
     };
   },
   computed: {
-        
+    
+   
   },
   methods: {
+  },
+  created() {    
+    const Pokedex = require("pokeapi-js-wrapper");
+    const customOptions = {
+      protocol: "https",
+      versionPath: "/api/v2/",
+      timeout: 100 * 10000,
+      cache: true,
+      cacheImages: true
+    }
+    const P = new Pokedex.Pokedex(customOptions);
+    P.getPokemonsList().then((response) => {
+      return response;      
+    }).then((data) => {
+      data.results.forEach((pokemonData) => {
+        P.getPokemonByName(pokemonData.name).then((pokemon) => {
+          this.apiPokedex.push(pokemon);
+        });
+      });
+      return data;
+    }).then((response) => {
+      this.apiPokedex.sort((a, b) => {
+        return a.id - b.id;
+      });
+      return response;
+    });
+    
+    
   }
 };
 </script>
