@@ -46,7 +46,7 @@ export default {
                 if (filters.filterTypeAnd) {
                     filteredList = filteredList.filter((pokemon) => {
                         for (let i = 0; i < filters.types.length; i++) {
-                            if (!pokemon.types.includes(filters.types[i])) {
+                            if (!pokemon.types.find((type) => type.type.name === filters.types[i])) {
                                 return false;
                             }
                         }
@@ -55,13 +55,16 @@ export default {
                 } else {
                     filteredList = filteredList.filter((pokemon) => {
                         for (let i = 0; i < filters.types.length; i++) {
-                            if (pokemon.types.includes(filters.types[i])) {
+                            if (pokemon.types.find((type) => type.type.name === filters.types[i])) {
                                 return true;
                             }
                         }
                     });
                 }
             }
+            filteredList.sort((a, b) => {
+                return a.id - b.id;
+            });
             return filteredList;
         }
     }

@@ -44,20 +44,24 @@ export default {
       cacheImages: true
     }
     const P = new Pokedex.Pokedex(customOptions);
-    P.getPokemonsList().then((response) => {
-      return response;      
+    const interval = {
+      offset: 905,
+      limit: 1000,
+    }
+    P.getPokemonsList(interval).then((response) => {
+      return response;  
+        
     }).then((data) => {
       data.results.forEach((pokemonData) => {
         P.getPokemonByName(pokemonData.name).then((pokemon) => {
-          this.apiPokedex.push(pokemon);
+          if (pokemon.is_default) {
+            this.apiPokedex.push(pokemon);
+          }          
         });
       });
       return data;
-    }).then((response) => {
-      this.apiPokedex.sort((a, b) => {
-        return a.id - b.id;
-      });
-      return response;
+    }).catch(error => {
+      console.error(error);
     });
     
     

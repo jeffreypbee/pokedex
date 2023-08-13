@@ -16,24 +16,24 @@ export default new Vuex.Store({
       sprite: 'official-artwork'
     },
     types: [
-      {name:'bug', color: "#92BC2C"}, 
-      {name:'dark', color: "#595761"}, 
-      {name:'dragon', color: "#0C69C8"}, 
-      {name:'electric', color: "#F2D94E"}, 
-      {name:'fairy', color: "#EE90E6"}, 
-      {name:'fighting', color: "#D3425F"}, 
-      {name:'fire', color: "#FBA54C"}, 
-      {name:'flying', color: "#A1BBEC"}, 
-      {name:'ghost', color: "#5F6DBC"}, 
-      {name:'grass', color: "#5FBD58"}, 
-      {name:'ground', color: "#DA7C4D"}, 
-      {name:'ice', color: "#75D0C1"}, 
-      {name:'normal', color: "#A0A29F"}, 
-      {name:'poison', color: "#B763CF"}, 
-      {name:'psychic', color: "#FA8581"}, 
-      {name:'rock', color: "#C9BB8A"}, 
-      {name:'steel', color: "#5695A3"}, 
-      {name:'water', color: "#539DDF"}
+      {name:'bug', color: "#92BC2C", icon: 'bug'}, 
+      {name:'dark', color: "#595761", icon: 'moon'}, 
+      {name:'dragon', color: "#0C69C8", icon: 'dragon'}, 
+      {name:'electric', color: "#F2D94E", icon: 'bolt-lightning'}, 
+      {name:'fairy', color: "#EE90E6", icon: 'rainbow'}, 
+      {name:'fighting', color: "#D3425F", icon: 'hand-fist'}, 
+      {name:'fire', color: "#FBA54C", icon: 'fire'}, 
+      {name:'flying', color: "#A1BBEC", icon: 'feather-pointed'}, 
+      {name:'ghost', color: "#5F6DBC", icon: 'ghost'}, 
+      {name:'grass', color: "#5FBD58", icon: 'leaf'}, 
+      {name:'ground', color: "#DA7C4D", icon: 'mound'}, 
+      {name:'ice', color: "#75D0C1", icon: 'snowflake'}, 
+      {name:'normal', color: "#A0A29F", icon: 'square'}, 
+      {name:'poison', color: "#B763CF", icon: 'skull'}, 
+      {name:'psychic', color: "#FA8581", icon: 'eye'}, 
+      {name:'rock', color: "#C9BB8A", icon: 'gem'}, 
+      {name:'steel', color: "#5695A3", icon: 'gear'}, 
+      {name:'water', color: "#539DDF", icon: 'droplet'}
     ],
     generations: [
       {
@@ -87,6 +87,10 @@ export default new Vuex.Store({
     getTypeColor: (state) => (typeName) => {
       const type = state.types.find((type) => type.name === typeName);
       return type.color;
+    },
+    getTypeIcon: (state) => (typeName) => {
+      const type = state.types.find((type) => type.name === typeName);
+      return type.icon;
     }
   },
   mutations: {

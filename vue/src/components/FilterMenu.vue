@@ -21,6 +21,9 @@
         <p>
           <img v-for="(type, index) in $store.state.types" :key="index" :class="{selected : $store.state.filters.types.includes(type.name)}" @click="$store.commit('FILTER_BY_TYPE', type.name)" :alt="type.name" :title="type.name" :src="require('../assets/type_icons/' + type.name +'.png')">
         </p>
+        <div>
+          <font-awesome-icon v-for="type in $store.state.types" :key="`type-${type.name}`" :icon="['fas', type.icon]" :title="type.name" class="filter-type-icon selected" border fixed-width />
+        </div>
         </div>
       </div>
 </template>
@@ -49,5 +52,22 @@ export default {
 </script>
 
 <style>
+
+.filter-type-icon {
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  padding: 5px;
+  border-radius: 50%;
+  margin: 3px;
+}
+
+.filter-type-icon:hover {
+  scale: 120%
+}
+
+.selected {
+  background-color: #aaa;
+  color: white;
+}
 
 </style>
