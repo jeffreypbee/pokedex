@@ -10,11 +10,23 @@ CREATE TABLE users (
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 
+CREATE TABLE pokemon (
+	id BIGINT PRIMARY KEY,
+	pokedex_number BIGINT NOT NULL,
+	name varchar(20) NOT NULL
+);
+
 CREATE TABLE types (
 	type_id SERIAL PRIMARY KEY,
 	name varchar(20) NOT NULL UNIQUE,
 	color varchar (10) NOT NULL UNIQUE,
 	icon_name varchar(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE pokemon_types (
+	pokemon_id BIGINT,
+	type_id BIGINT,
+	order INT
 );
 
 CREATE TABLE checklists (
@@ -29,7 +41,7 @@ CREATE TABLE checklists (
 CREATE TABLE pokemon_in_checklists (
 	checklist_id BIGINT NOT NULL,
 	pokemon_id BIGINT NOT NULL,
-	date_added DATETIME
+	date_added DATE
 );
 
 COMMIT TRANSACTION;
