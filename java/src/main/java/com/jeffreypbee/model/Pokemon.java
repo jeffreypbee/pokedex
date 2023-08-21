@@ -1,11 +1,14 @@
 package com.jeffreypbee.model;
 
+import java.util.Objects;
+
 public class Pokemon {
 
     int id;
-    int pokedex_number;
+    int pokedexNumber;
     String name;
-    String[] types;
+    String type1;
+    String type2;
 
     public int getId() {
         return id;
@@ -15,12 +18,12 @@ public class Pokemon {
         this.id = id;
     }
 
-    public int getPokedex_number() {
-        return pokedex_number;
+    public int getPokedexNumber() {
+        return pokedexNumber;
     }
 
-    public void setPokedex_number(int pokedex_number) {
-        this.pokedex_number = pokedex_number;
+    public void setPokedexNumber(int pokedex_number) {
+        this.pokedexNumber = pokedex_number;
     }
 
     public String getName() {
@@ -31,11 +34,32 @@ public class Pokemon {
         this.name = name;
     }
 
-    public String[] getTypes() {
-        return types;
+    public String getType1() {
+        return type1;
     }
 
-    public void setTypes(String[] types) {
-        this.types = types;
+    public void setType1(String type1) {
+        this.type1 = type1;
+    }
+
+    public String getType2() {
+        return type2;
+    }
+
+    public void setType2(String type2) {
+        this.type2 = type2;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pokemon pokemon = (Pokemon) o;
+        return id == pokemon.id && pokedexNumber == pokemon.pokedexNumber && Objects.equals(name, pokemon.name) && Objects.equals(type1, pokemon.type1) && Objects.equals(type2, pokemon.type2);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, pokedexNumber, name, type1, type2);
     }
 }

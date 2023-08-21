@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users, types;
+DROP TABLE IF EXISTS pokemon_in_checklists, checklists, users, types, pokemon;
 
 CREATE TABLE users (
 	user_id SERIAL,
@@ -13,20 +13,15 @@ CREATE TABLE users (
 CREATE TABLE pokemon (
 	id BIGINT PRIMARY KEY,
 	pokedex_number BIGINT NOT NULL,
-	name varchar(20) NOT NULL
+	name varchar(20) NOT NULL,
+	type1 varchar(20),
+	type2 varchar(20)
 );
 
 CREATE TABLE types (
-	type_id SERIAL PRIMARY KEY,
-	name varchar(20) NOT NULL UNIQUE,
+	name varchar(20) PRIMARY KEY,
 	color varchar (10) NOT NULL UNIQUE,
 	icon_name varchar(50) NOT NULL UNIQUE
-);
-
-CREATE TABLE pokemon_types (
-	pokemon_id BIGINT,
-	type_id BIGINT,
-	order INT
 );
 
 CREATE TABLE checklists (
