@@ -39,4 +39,17 @@ public class JdbcPokemonDaoTests extends BaseDaoTests {
         Assert.assertEquals(3, pkmnList.size());
     }
 
+    @Test
+    public void add_pokemon_adds_pokemon() {
+        Pokemon pkmn = new Pokemon();
+        pkmn.setId(610);
+        pkmn.setPokedexNumber(610);
+        pkmn.setName("Axew");
+        pkmn.setType1("dragon");
+
+        Pokemon newPkmn = target.addPokemon(pkmn);
+
+        Assert.assertEquals(pkmn, newPkmn);
+    }
+
 }

@@ -2,6 +2,7 @@ package com.jeffreypbee.controller;
 
 import com.jeffreypbee.dao.PokemonDao;
 import com.jeffreypbee.model.Pokemon;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,7 +25,17 @@ public class PokemonController {
 
     @GetMapping(path="/{id}")
     public Pokemon getById(@PathVariable int id) {
-        return pokemonDao.getPokemonById(id);
+        Pokemon pkmn = pokemonDao.getPokemonById(id);
+        if (pkmn.getName() == null) {
+            //TODO: Get the Pokemon from the API and insert it
+            // pkmn = pokemonDao.addPokemon(getPokemonByIdFromAPI(id));
+        }
+        return pkmn;
+    }
+
+    private Pokemon getPokemonByIdFromAPI(int id) {
+        Pokemon pkmn = new Pokemon();
+        return pkmn;
     }
 
 }

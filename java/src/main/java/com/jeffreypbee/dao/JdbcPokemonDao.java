@@ -39,6 +39,13 @@ public class JdbcPokemonDao implements PokemonDao {
         return pkmn;
     }
 
+    @Override
+    public Pokemon addPokemon(Pokemon pokemon) {
+        String sql = "INSERT INTO pokemon (id, pokedex_number, name, type1, type2) VALUES (?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, pokemon.getId(), pokemon.getPokedexNumber(), pokemon.getName(), pokemon.getType1(), pokemon.getType2());
+        return getPokemonById(pokemon.getId());
+    }
+
     private Pokemon mapRowSetToPokemon(SqlRowSet row) {
         Pokemon pkmn = new Pokemon();
         pkmn.setId(row.getInt("id"));
