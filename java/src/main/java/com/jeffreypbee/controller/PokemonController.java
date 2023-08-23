@@ -2,7 +2,6 @@ package com.jeffreypbee.controller;
 
 import com.jeffreypbee.dao.PokemonDao;
 import com.jeffreypbee.model.Pokemon;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
