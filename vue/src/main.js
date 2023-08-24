@@ -11,13 +11,13 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
-import { faGhost } from '@fortawesome/free-solid-svg-icons'
+import { faBiohazard } from '@fortawesome/free-solid-svg-icons'
 import { faGear } from '@fortawesome/free-solid-svg-icons'
 import { faDroplet } from '@fortawesome/free-solid-svg-icons'
 import { faFire } from '@fortawesome/free-solid-svg-icons'
 import { faSnowflake } from '@fortawesome/free-solid-svg-icons'
 import { faFeather } from '@fortawesome/free-solid-svg-icons'
-import { faBug } from '@fortawesome/free-solid-svg-icons'
+import { faLocust } from '@fortawesome/free-solid-svg-icons'
 import { faMask } from '@fortawesome/free-solid-svg-icons'
 import { faSeedling } from '@fortawesome/free-solid-svg-icons'
 import { faDragon } from '@fortawesome/free-solid-svg-icons'
@@ -31,13 +31,13 @@ import { faHandFist } from '@fortawesome/free-solid-svg-icons'
 import { faBoltLightning } from '@fortawesome/free-solid-svg-icons'
 
 /* add icons to the library */
-library.add(faGhost)
+library.add(faBiohazard)
 library.add(faGear)
 library.add(faDroplet)
 library.add(faFire)
 library.add(faSnowflake)
 library.add(faFeather)
-library.add(faBug)
+library.add(faLocust)
 library.add(faMask)
 library.add(faSeedling)
 library.add(faDragon)

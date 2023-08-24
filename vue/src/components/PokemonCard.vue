@@ -12,6 +12,8 @@ export default {
 
 <style>
 .pokemon-card {
-    border-radius: 10px;
+  width: 150px;
+  margin: 10px;
+  border-radius: 10px;
 }
 </style>

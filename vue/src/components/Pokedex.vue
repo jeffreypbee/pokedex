@@ -1,17 +1,17 @@
 <template>
   <div>
     <h1>Pokedex</h1>
-        <PokemonCard v-for="pokemon in pokedex" :key="pokemon.id" :pokemon="pokemon" />
+        <PokemonCardContainer :pokemonlist="pokedex" />
   </div>
 </template>
 
 <script>
-import PokemonCard from '../components/PokemonCard.vue'
+import PokemonCardContainer from '../components/PokemonCardContainer.vue'
 import pokemonService from '../services/PokemonService.js'
 
 export default {
     components: {
-        PokemonCard
+        PokemonCardContainer
     },
   data() {
     return {

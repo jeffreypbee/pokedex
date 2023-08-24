@@ -2,13 +2,13 @@
   <div class="home">
     <h1>Home</h1>
     <p>You must be authenticated to see this</p>
-    <font-awesome-icon icon="fa-solid fa-ghost" />
+    <font-awesome-icon icon="fa-solid fa-biohazard" />
     <font-awesome-icon icon="fa-solid fa-gear" />
     <font-awesome-icon icon="fa-solid fa-droplet" />
     <font-awesome-icon icon="fa-solid fa-fire" />
     <font-awesome-icon icon="fa-solid fa-snowflake" />
     <font-awesome-icon icon="fa-solid fa-feather" />
-    <font-awesome-icon icon="fa-solid fa-bug" />
+    <font-awesome-icon icon="fa-solid fa-locust" />
     <font-awesome-icon icon="fa-solid fa-mask" />
     <font-awesome-icon icon="fa-solid fa-seedling" />
     <font-awesome-icon icon="fa-solid fa-dragon" />
