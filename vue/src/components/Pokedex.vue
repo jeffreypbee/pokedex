@@ -21,7 +21,6 @@ export default {
   created() {
     pokemonService.getAll().then(response => {
       this.pokedex = response.data;
-      console.log(this.pokedex);
     });
   }
 }

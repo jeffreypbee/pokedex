@@ -11,7 +11,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
-import { faDisease } from '@fortawesome/free-solid-svg-icons'
+import { faSkullCrossbones } from '@fortawesome/free-solid-svg-icons'
 import { faGears } from '@fortawesome/free-solid-svg-icons'
 import { faDroplet } from '@fortawesome/free-solid-svg-icons'
 import { faFire } from '@fortawesome/free-solid-svg-icons'
@@ -31,7 +31,7 @@ import { faHandFist } from '@fortawesome/free-solid-svg-icons'
 import { faBoltLightning } from '@fortawesome/free-solid-svg-icons'
 
 /* add icons to the library */
-library.add(faDisease)
+library.add(faSkullCrossbones)
 library.add(faGears)
 library.add(faDroplet)
 library.add(faFire)
