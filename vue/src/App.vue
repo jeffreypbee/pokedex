@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <header>
-      <div>
-        Pokedex
-      </div>
+      <h1>Pok&eacute;dex</h1>
       <div id="nav">
         <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
         <router-link v-bind:to="{ name: 'pokedex' }">Pokedex</router-link>&nbsp;|&nbsp;
@@ -47,15 +45,24 @@ header {
   grid-area: header;
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
   background-color: gray;
   color: white;
-  padding: 10px;
+}
+
+header h1 {
+  margin: 2px;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, .3);
 }
 
 header a {
   font-weight: bold;
   color: white;
   text-decoration: none;
+}
+
+#nav {
+  margin-right: 5px;
 }
 
 main {
