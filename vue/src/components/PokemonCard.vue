@@ -110,7 +110,7 @@ export default {
 }
 .pokemon-card-types {
   width: 100%;
-  padding: 2px;
+  padding-top: 3px;
   color: white;
   display: flex;
   justify-content: space-evenly;

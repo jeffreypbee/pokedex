@@ -1,6 +1,10 @@
 <template>
   <div>
-    <PokemonCardContainer :pokemonlist="pokedex" />
+    <div id="search-form">
+      <input type="text" v-model="searchTerm" placeholder="Search" />
+    </div>
+    
+    <PokemonCardContainer :pokemonlist="filteredPokedex" />
   </div>
 </template>
 
@@ -14,7 +18,19 @@ export default {
     },
   data() {
     return {
+      searchTerm: '',
       pokedex: []
+    }
+  },
+  computed: {
+    filteredPokedex() {
+      if (this.searchTerm !== '') {
+        return this.pokedex.filter(pkmn => {
+          return pkmn.name.toLowerCase().includes(this.searchTerm.toLowerCase());
+        });
+      } else {
+        return this.pokedex;
+      }      
     }
   },
   created() {
@@ -26,5 +42,10 @@ export default {
 </script>
 
 <style>
-
+#search-form {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 </style>
