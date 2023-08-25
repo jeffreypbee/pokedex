@@ -103,8 +103,8 @@ export default {
   align-items: center;
 }
 .pokemon-card-sprite {
-  width: 120px;
-  
+  width: 120px;  
+  margin: -5px;
   filter: drop-shadow(2px 2px 0 rgba(0, 0, 0, .3));
   transition: all 0.5s;
 }
