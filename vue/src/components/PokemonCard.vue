@@ -1,14 +1,16 @@
 <template>
-  <div class="pokemon-card" :style="{background: gradientBackground}">
+  <div class="pokemon-card" :style="{background: gradientBackground}" @mouseover="hovering = true" @mouseleave="hovering = false">
     <div class="pokemon-card-number">{{ pokedexNumber }}</div>
-    <div class="pokemon-card-name">{{ pokemon.name }}</div>
+    
     
     <div class="pokemon-card-sprite-container">
+      
+      <img :src="spriteSrc" class="pokemon-card-sprite" :class="{hovering : hovering}" />
+      <div class="pokemon-card-name">{{ pokemon.name }}</div>
       <div class="pokemon-card-types">
         <font-awesome-icon :icon="`fa-solid fa-${type1.icon}`" :title="type1.name" :style="{color: type1.color}" />
         <font-awesome-icon v-if="pokemon.type2" :icon="`fa-solid fa-${type2.icon}`" :title="type2.name" :style="{color: type2.color}" />
       </div>
-      <img :src="spriteSrc" class="pokemon-card-sprite" />
     </div>
     
   </div>
@@ -17,6 +19,11 @@
 <script>
 export default {
     props: ['pokemon'],
+    data() {
+      return {
+        hovering: false
+      }
+    },
     computed: {
       pokedexNumber() {
         const number = this.pokemon.pokedexNumber;
@@ -59,36 +66,56 @@ export default {
   flex-direction: column;
   align-items: center;
 }
+.pokemon-card:hover {
+  cursor: pointer;
+}
 .pokemon-card-number {
   width: 100%;
   font-size: .8rem;
   font-weight: 600;
-  background-color: rgba(255, 255, 255, .5);
+  /* background-color: rgba(255, 255, 255, .5); */
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, .5), rgba(0, 0, 0, 0));
+  border-bottom: 1px solid white;
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
   text-align: center;
+  color: white;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, .4);
 }
 .pokemon-card-name {
   color: white;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, .4);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, .5), rgba(0, 0, 0, 0));
+  width: 100%;
+  text-align: center;
   font-weight: bold;
-  text-shadow: 1px 1px 0px rgba(0, 0, 0, .3);
+  border-top: 1px solid white;
 }
 .pokemon-card-sprite-container {
-  width: 100%;
-  background: linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  width: 106%;
+  height: 100%;
+  background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 .pokemon-card-sprite {
-  width: 100px;
+  width: 120px;
+  
+  filter: drop-shadow(2px 2px 0 rgba(0, 0, 0, .3));
+  transition: all 0.5s;
 }
 .pokemon-card-types {
   width: 100%;
-  padding-top: 3px;
+  padding: 2px;
   color: white;
   display: flex;
   justify-content: space-evenly;
+}
+.hovering {
+  scale: 120%;
 }
 </style>
