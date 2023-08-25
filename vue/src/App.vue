@@ -25,7 +25,7 @@
 
 <style>
 body {
-  background-color: white;
+  background-color: #eeeeee;
   font-family: Arial, Helvetica, sans-serif;
   height: 100%;
   margin: 0px;
