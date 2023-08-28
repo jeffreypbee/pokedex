@@ -29,13 +29,16 @@ export default {
   },
   computed: {
     filteredPokedex() {
+      let filteredList = this.pokedex;
       if (this.searchTerm !== '') {
-        return this.pokedex.filter(pkmn => {
+        filteredList = this.pokedex.filter(pkmn => {
           return pkmn.name.toLowerCase().includes(this.searchTerm.toLowerCase());
         });
-      } else {
-        return this.pokedex;
-      }      
+      }
+      if (this.$store.filterTypes) {
+        //filter by type
+      }
+      return filteredList;      
     }
   },
   created() {
@@ -52,5 +55,9 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+#filter-types {
+  display: flex;
+  justify-content: center;
 }
 </style>

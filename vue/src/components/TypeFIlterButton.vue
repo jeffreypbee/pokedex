@@ -20,6 +20,7 @@ export default {
     methods: {
         toggleSelected() {
             this.selected = !this.selected;
+            this.$store.commit('TOGGLE_FILTER_TYPE', this.type.name);
         }
     }
 }

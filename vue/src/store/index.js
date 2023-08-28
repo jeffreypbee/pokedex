@@ -111,7 +111,8 @@ export default new Vuex.Store({
         color: '539DDF',
         icon: 'droplet'
       }
-    ]
+    ],
+    filterTypes: []
   },
   getters: {
     getType: (state) => (typeName) => {
@@ -136,6 +137,13 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+    TOGGLE_FILTER_TYPE(state, typeName) {
+      if(state.filterTypes.includes(typeName)) {
+        state.filterTypes.splice(state.filterTypes.indexOf(typeName), 1);
+      } else {
+        state.filterTypes.push(typeName);
+      }
     }
   }
 })
