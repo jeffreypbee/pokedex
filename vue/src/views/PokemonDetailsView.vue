@@ -1,5 +1,8 @@
 <template>
-  <PokemonDetails />
+  <div id="pokemon-details-container">
+    <PokemonDetails />
+  </div>
+  
 </template>
 
 <script>
@@ -12,5 +15,9 @@ export default {
 </script>
 
 <style>
-
+#pokemon-details-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
 </style>

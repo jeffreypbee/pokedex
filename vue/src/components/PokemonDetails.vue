@@ -1,16 +1,26 @@
 <template>
   <div v-if="dataLoaded" id="pokemon-details">
     <div id="pokemon-details-header" :style="{background: gradientBackground}">
-        <h1>{{ pokedexNumber }} {{ pokemon.name }}</h1>
+      <h1>{{ pokemon.name }}</h1>
+      <h2>{{ pokedexNumber }}</h2> 
     </div>
     
     <img :src="spriteSrc" alt="">
+    <div id="pokemon-details-types">
+      <TypePill :type="$store.getters.getType(pokemon.type1)" />
+      <TypePill v-if="pokemon.type2" :type="$store.getters.getType(pokemon.type2)" />
+    </div>
+    
   </div>
 </template>
 
 <script>
 import pokemonService from '../services/PokemonService.js'
+import TypePill from '../components/TypePill.vue'
 export default {
+    components: {
+      TypePill
+    },
     data() {
         return {
             pokemon: {},
@@ -69,5 +79,29 @@ export default {
     width: 100%;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#pokemon-details-header h1 {
+  margin: 0px;
+  padding: 0px;
+  padding-left: 20px;
+  color: white;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, .4);
+}
+
+#pokemon-details-header h2 {
+  margin: 0px;
+  padding: 0px;
+  padding-right: 20px;
+  color: white;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, .4);
+}
+
+#pokemon-details-types {
+  display: flex;
+  justify-content: center;
 }
 </style>
