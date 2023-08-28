@@ -1,5 +1,5 @@
 <template>
-  <div class="pokemon-card" :style="{background: gradientBackground}" @mouseover="hovering = true" @mouseleave="hovering = false">
+  <div class="pokemon-card" :style="{background: gradientBackground}" @mouseover="hovering = true" @mouseleave="hovering = false" @click="$router.push({name: 'pokemon-details', params: {id: pokemon.id}})">
     <div class="pokemon-card-number">{{ pokedexNumber }}</div>
     
     
@@ -61,7 +61,7 @@ export default {
   margin: 10px;
   border-radius: 20px;
   border: 3px solid white;
-  box-shadow: 0px 5px 0px 0px rgba(0, 0, 0, .2);
+  box-shadow: 2px 5px 0px 0px rgba(0, 0, 0, .2);
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -6,6 +6,7 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import PokedexView from '../views/PokedexView.vue'
+import PokemonDetailsView from '../views/PokemonDetailsView.vue'
 
 Vue.use(Router)
 
@@ -58,6 +59,11 @@ const router = new Router({
       path: '/pokedex',
       name: 'pokedex',
       component: PokedexView
+    },
+    {
+      path: '/pokemon/:id',
+      name: 'pokemon-details',
+      component: PokemonDetailsView
     }
   ]
 })

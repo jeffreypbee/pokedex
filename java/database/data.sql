@@ -94,4 +94,6 @@ INSERT INTO pokemon(id, pokedex_number, name, type1) VALUES (950, 950, 'Klawf', 
 INSERT INTO pokemon(id, pokedex_number, name, type1, type2) VALUES (973, 973, 'Flamigo', 'flying', 'fighting');
 INSERT INTO pokemon(id, pokedex_number, name, type1, type2) VALUES (980, 980, 'Clodsire', 'poison', 'ground');
 
+INSERT INTO pkmn_art(pokemon_id) VALUES (3);
+
 COMMIT TRANSACTION;
