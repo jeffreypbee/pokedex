@@ -3,6 +3,9 @@
     <div id="search-form">
       <input type="text" v-model="searchTerm" placeholder="Search" />
     </div>
+    <div id="filter-types">
+      <TypeFilterButton v-for="type in $store.state.types" :key="`filter-${type.name}`" :type="type" />
+    </div>
     
     <PokemonCardContainer :pokemonlist="filteredPokedex" />
   </div>
@@ -10,11 +13,13 @@
 
 <script>
 import PokemonCardContainer from '../components/PokemonCardContainer.vue'
+import TypeFilterButton from '../components/TypeFIlterButton.vue'
 import pokemonService from '../services/PokemonService.js'
 
 export default {
     components: {
-        PokemonCardContainer
+        PokemonCardContainer,
+        TypeFilterButton
     },
   data() {
     return {
