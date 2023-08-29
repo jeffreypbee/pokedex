@@ -92,7 +92,20 @@ footer {
 
 .tab:hover {
   cursor: pointer;
+  background-color: #dddddd;
+  color: #333;
+}
+
+.tab.selected {
   background-color: white;
   color: #333;
+  border-top: 1px solid darkgray;
+  border-right: 1px solid darkgray;
+  border-left: 1px solid darkgray;
+}
+
+.undertabs {
+  height: 30px;
+  background: linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
 }
 </style>

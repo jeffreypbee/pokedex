@@ -7,12 +7,16 @@
       <TypeFilterButton v-for="type in $store.state.types" :key="`filter-${type.name}`" :type="type" />
     </div>
     <div id="filter-gens">
-      <button @click="$store.commit('TOGGLE_FILTER_GEN', {})" class="tab">All</button>
-      <button v-for="gen in $store.state.generations" :key="`filter-gen-${gen.gen}`" @click="$store.commit('TOGGLE_FILTER_GEN', gen)" class="tab">
+      <button @click="$store.commit('TOGGLE_FILTER_GEN', {})" 
+        class="tab" :class="{selected: noGenSelected}">
+        All</button>
+      <button v-for="gen in $store.state.generations" :key="`filter-gen-${gen.gen}`" 
+        @click="$store.commit('TOGGLE_FILTER_GEN', gen)" 
+        class="tab" :class="{selected: $store.state.filterGen == gen}">
         {{ gen.numeral }}
       </button>
     </div>
-    
+    <div id="entrycount" class="undertabs">{{ filteredPokedex.length }} entries</div>
     <PokemonCardContainer :pokemonlist="filteredPokedex" />
   </div>
 </template>'
@@ -34,6 +38,10 @@ export default {
     }
   },
   computed: {
+    noGenSelected() {
+      const filterGen = this.$store.state.filterGen;
+      return Object.keys(filterGen).length === 0;
+    },
     filteredPokedex() {
       let filteredList = this.pokedex;
       // Filter by search box (Name)
@@ -82,5 +90,10 @@ export default {
 #filter-gens {
   display: flex;
   justify-content: center;
+}
+#entrycount {
+  text-align: center;
+  color: gray;
+  padding: 5px;
 }
 </style>
