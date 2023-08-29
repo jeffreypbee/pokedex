@@ -34,6 +34,8 @@ export default {
     transition: all .3s;
     border-radius: 50%;
     padding: 2px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .type-filter-button:hover {

@@ -31,12 +31,16 @@ export default {
     filteredPokedex() {
       let filteredList = this.pokedex;
       if (this.searchTerm !== '') {
-        filteredList = this.pokedex.filter(pkmn => {
+        filteredList = filteredList.filter(pkmn => {
           return pkmn.name.toLowerCase().includes(this.searchTerm.toLowerCase());
         });
       }
-      if (this.$store.filterTypes) {
-        //filter by type
+      if (this.$store.state.filterTypes) {
+        this.$store.state.filterTypes.forEach(type => {
+          filteredList = filteredList.filter(pkmn => {
+            return pkmn.type1 === type || pkmn.type2 === type;
+          });
+        });
       }
       return filteredList;      
     }
