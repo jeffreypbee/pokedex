@@ -153,4 +153,6 @@ INSERT INTO pokemon(id, pokedex_number, name, type1, type2) VALUES (983, 983, 'K
 
 INSERT INTO pkmn_art(pokemon_id) VALUES (3);
 
+INSERT INTO checklists(user_id, name, icon_name, color) VALUES (1, 'checklist', 'gem', '00dd00');
+
 COMMIT TRANSACTION;
