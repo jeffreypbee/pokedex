@@ -19,5 +19,6 @@ export default {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    border-top: 10px solid white;
 }
 </style>

@@ -76,4 +76,23 @@ footer {
   justify-content: center;
   align-items: flex-end;
 }
+
+.tab {
+  border: none;
+  background-color: darkgray;
+  color: white;
+  padding: 5px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  min-width: 100px;
+  margin-left: 2px;
+  margin-right: 2px;
+  font-weight: bold;
+}
+
+.tab:hover {
+  cursor: pointer;
+  background-color: white;
+  color: #333;
+}
 </style>

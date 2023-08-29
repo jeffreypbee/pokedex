@@ -112,7 +112,64 @@ export default new Vuex.Store({
         icon: 'droplet'
       }
     ],
-    filterTypes: []
+    filterTypes: [],
+    generations: [
+      {
+        gen: 1,
+        numeral: 'I',
+        begins: 1,
+        ends: 151
+      },
+      {
+        gen: 2,
+        numeral: 'II',
+        begins: 152,
+        ends: 251
+      },
+      {
+        gen: 3,
+        numeral: 'III',
+        begins: 252,
+        ends: 386
+      },
+      {
+        gen: 4,
+        numeral: 'IV',
+        begins: 387,
+        ends: 493
+      },
+      {
+        gen: 5,
+        numeral: 'V',
+        begins: 494,
+        ends: 649
+      },
+      {
+        gen: 6,
+        numeral: 'VI',
+        begins: 650,
+        ends: 721
+      },
+      {
+        gen: 7,
+        numeral: 'VII',
+        begins: 722,
+        ends: 809
+      },
+      {
+        gen: 8,
+        numeral: 'VIII',
+        begins: 810,
+        ends: 905
+      },
+      {
+        gen: 9,
+        numeral: 'IX',
+        begins: 906,
+        ends: 1010
+      }
+    ],
+    filterGen: {}
   },
   getters: {
     getType: (state) => (typeName) => {
@@ -144,6 +201,13 @@ export default new Vuex.Store({
       } else {
         state.filterTypes.push(typeName);
       }
+    },
+    TOGGLE_FILTER_GEN(state, gen) {
+      if (state.filterGen === gen) {
+        state.filterGen = {}
+      } else {
+        state.filterGen = gen;
+      }      
     }
   }
 })
