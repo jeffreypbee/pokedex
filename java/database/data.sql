@@ -80,9 +80,17 @@ INSERT INTO pokemon(id, pokedex_number, name, type1) VALUES (874, 874, 'Stonjour
 INSERT INTO pokemon(id, pokedex_number, name, type1) VALUES (878, 878, 'Cufant', 'steel');
 INSERT INTO pokemon(id, pokedex_number, name, type1) VALUES (879, 879, 'Copperajah', 'steel');
 INSERT INTO pokemon(id, pokedex_number, name, type1, type2) VALUES (902, 902, 'Basculegion', 'water', 'ghost');
+INSERT INTO pokemon(id, pokedex_number, name, type1) VALUES (906, 906, 'Sprigatito', 'grass');
+INSERT INTO pokemon(id, pokedex_number, name, type1) VALUES (907, 907, 'Floragato', 'grass');
+INSERT INTO pokemon(id, pokedex_number, name, type1, type2) VALUES (908, 908, 'Meowscarada', 'grass', 'dark');
+INSERT INTO pokemon(id, pokedex_number, name, type1) VALUES (909, 909, 'Fuecoco', 'fire');
+INSERT INTO pokemon(id, pokedex_number, name, type1) VALUES (910, 910, 'Crocalor', 'fire');
+INSERT INTO pokemon(id, pokedex_number, name, type1, type2) VALUES (911, 911, 'Skeledirge', 'fire', 'ghost');
 INSERT INTO pokemon(id, pokedex_number, name, type1) VALUES (912, 912, 'Quaxly', 'water');
 INSERT INTO pokemon(id, pokedex_number, name, type1) VALUES (913, 913, 'Quaxwell', 'water');
 INSERT INTO pokemon(id, pokedex_number, name, type1, type2) VALUES (914, 914, 'Quaquaval', 'water', 'fighting');
+INSERT INTO pokemon(id, pokedex_number, name, type1) VALUES (915, 915, 'Lechonk', 'normal');
+INSERT INTO pokemon(id, pokedex_number, name, type1) VALUES (916, 916, 'Oinkologne', 'normal');
 INSERT INTO pokemon(id, pokedex_number, name, type1) VALUES (935, 935, 'Charcadet', 'fire');
 INSERT INTO pokemon(id, pokedex_number, name, type1, type2) VALUES (936, 936, 'Armarouge', 'fire', 'psychic');
 INSERT INTO pokemon(id, pokedex_number, name, type1, type2) VALUES (937, 937, 'Ceruledge', 'fire', 'ghost');
@@ -92,7 +100,17 @@ INSERT INTO pokemon(id, pokedex_number, name, type1, type2) VALUES (948, 948, 'T
 INSERT INTO pokemon(id, pokedex_number, name, type1, type2) VALUES (949, 949, 'Toadscruel', 'ground', 'grass');
 INSERT INTO pokemon(id, pokedex_number, name, type1) VALUES (950, 950, 'Klawf', 'rock');
 INSERT INTO pokemon(id, pokedex_number, name, type1, type2) VALUES (973, 973, 'Flamigo', 'flying', 'fighting');
+INSERT INTO pokemon(id, pokedex_number, name, type1) VALUES (974, 974, 'Cetoddle', 'ice');
+INSERT INTO pokemon(id, pokedex_number, name, type1) VALUES (975, 975, 'Cetitan', 'ice');
+INSERT INTO pokemon(id, pokedex_number, name, type1, type2) VALUES (976, 976, 'Veluza', 'water', 'psychic');
+INSERT INTO pokemon(id, pokedex_number, name, type1) VALUES (977, 977, 'Dondozo', 'water');
+INSERT INTO pokemon(id, pokedex_number, name, type1, type2) VALUES (978, 978, 'Tatsugiri', 'water', 'dragon');
+INSERT INTO pokemon(id, pokedex_number, name, type1, type2) VALUES (979, 979, 'Annihilape', 'fighting', 'ghost');
 INSERT INTO pokemon(id, pokedex_number, name, type1, type2) VALUES (980, 980, 'Clodsire', 'poison', 'ground');
+INSERT INTO pokemon(id, pokedex_number, name, type1, type2) VALUES (981, 981, 'Farigiraf', 'normal', 'psychic');
+INSERT INTO pokemon(id, pokedex_number, name, type1) VALUES (982, 982, 'Dudunsparce', 'normal');
+INSERT INTO pokemon(id, pokedex_number, name, type1, type2) VALUES (983, 983, 'Kingambit', 'dark', 'steel');
+
 
 INSERT INTO pkmn_art(pokemon_id) VALUES (3);
 
