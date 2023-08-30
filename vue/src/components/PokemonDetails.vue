@@ -5,7 +5,7 @@
       <h2>{{ pokedexNumber }}</h2> 
     </div>
     
-    <img :src="spriteSrc" alt="">
+    <PokemonArt :pokemon-id="pokemon.id" />
     <div id="pokemon-details-types">
       <TypePill :type="$store.getters.getType(pokemon.type1)" />
       <TypePill v-if="pokemon.type2" :type="$store.getters.getType(pokemon.type2)" />
@@ -16,9 +16,11 @@
 
 <script>
 import pokemonService from '../services/PokemonService.js'
+import PokemonArt from '../components/PokemonArt.vue'
 import TypePill from '../components/TypePill.vue'
 export default {
     components: {
+      PokemonArt,
       TypePill
     },
     data() {

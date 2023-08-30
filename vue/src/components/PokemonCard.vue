@@ -4,8 +4,8 @@
     
     
     <div class="pokemon-card-sprite-container">
-      
-      <img :src="spriteSrc" class="pokemon-card-sprite" :class="{hovering : hovering}" />
+      <PokemonArt :pokemon-id="pokemon.id" class="pokemon-card-sprite" :class="{hovering: hovering}" />
+      <!--img :src="spriteSrc" class="pokemon-card-sprite" :class="{hovering : hovering}" /-->
       <div class="pokemon-card-name">{{ pokemon.name }}</div>
       <div class="pokemon-card-types">
         <font-awesome-icon :icon="`fa-solid fa-${type1.icon}`" :title="type1.name" :style="{color: type1.color}" />
@@ -17,8 +17,13 @@
 </template>
 
 <script>
+import PokemonArt from '../components/PokemonArt.vue'
+
 export default {
     props: ['pokemon'],
+    components: {
+      PokemonArt
+    },
     data() {
       return {
         hovering: false
@@ -41,9 +46,6 @@ export default {
       },
       type2() {
         return this.$store.getters.getType(this.pokemon.type2);
-      },
-      spriteSrc() {
-        return `https://github.com/PokeAPI/sprites/raw/master/sprites/pokemon/other/official-artwork/${this.pokemon.id}.png`
       },
       gradientBackground() {
         if (this.pokemon.type2) {
