@@ -30,6 +30,7 @@ import { faGem } from '@fortawesome/free-solid-svg-icons'
 import { faHandFist } from '@fortawesome/free-solid-svg-icons'
 import { faBoltLightning } from '@fortawesome/free-solid-svg-icons'
 
+
 /* add icons to the library */
 library.add(faSkullCrossbones)
 library.add(faGears)

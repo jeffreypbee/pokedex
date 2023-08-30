@@ -19,5 +19,9 @@ public class ChecklistController {
         return checklistDao.getAllChecklistsForUser(id);
     }
 
+    @GetMapping(path="/checklists/{id}")
+    public Checklist getById(@PathVariable int id) {
+        return checklistDao.getChecklistById(id);
+    }
 
 }
