@@ -4,7 +4,7 @@
     
     
     <div class="pokemon-card-sprite-container">
-      <PokemonArt :pokemon-id="pokemon.id" class="pokemon-card-sprite" :class="{hovering: hovering}" />
+      <PokemonArt :pokemon-id="pokemon.id" type="mine" class="pokemon-card-sprite" :class="{hovering: hovering}" />
       <!--img :src="spriteSrc" class="pokemon-card-sprite" :class="{hovering : hovering}" /-->
       <div class="pokemon-card-name">{{ pokemon.name }}</div>
       <div class="pokemon-card-types">
@@ -105,7 +105,8 @@ export default {
   align-items: center;
 }
 .pokemon-card-sprite {
-  width: 120px;  
+  width: 120px;
+  min-height: 120px;  
   margin: -5px;
   filter: drop-shadow(2px 2px 0 rgba(0, 0, 0, .3));
   transition: all 0.5s;

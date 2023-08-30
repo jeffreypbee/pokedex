@@ -4,10 +4,15 @@
 
 <script>
 export default {
-    props: ['pokemonId'],
+    props: ['pokemonId', 'type'],
     computed: {
         imageSrc() {
-            return `/pokemon-art/official-art/${this.pokemonId}.png`;
+            if (this.type === 'official') {
+                return `/pokemon-art/official-art/${this.pokemonId}.png`;
+            } else if (this.type === 'mine') {
+                return `/pokemon-art/my-art/${this.pokemonId}.png`;
+            }
+            return '';
         }
     }
 }

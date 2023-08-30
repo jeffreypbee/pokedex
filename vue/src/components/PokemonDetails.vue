@@ -5,7 +5,7 @@
       <h2>{{ pokedexNumber }}</h2> 
     </div>
     
-    <PokemonArt :pokemon-id="pokemon.id" />
+    <PokemonArt :pokemon-id="pokemon.id" type="official" />
     <div id="pokemon-details-types">
       <TypePill :type="$store.getters.getType(pokemon.type1)" />
       <TypePill v-if="pokemon.type2" :type="$store.getters.getType(pokemon.type2)" />
