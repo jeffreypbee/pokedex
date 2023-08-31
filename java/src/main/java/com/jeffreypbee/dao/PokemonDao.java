@@ -10,6 +10,8 @@ public interface PokemonDao {
 
     Pokemon getPokemonById(int id);
 
+    List<Pokemon> getPokemonInChecklist(int checklistId);
+
     Pokemon addPokemon(Pokemon pokemon);
 
 }

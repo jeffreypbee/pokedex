@@ -162,4 +162,8 @@ INSERT INTO checklists(user_id, name, icon_name, color, description) VALUES (1, 
 INSERT INTO checklists(user_id, name, icon_name, color, description) VALUES (1, 'Favorites', 'droplet', 'ffcccc', 'I love these!');
 INSERT INTO checklists(user_id, name, icon_name, color, description) VALUES (1, 'Hatelist', 'dragon', 'dd0000', 'I hate these!');
 
+INSERT INTO pokemon_in_checklists(pokemon_id, checklist_id) VALUES (1, 1);
+INSERT INTO pokemon_in_checklists(pokemon_id, checklist_id) VALUES (2, 1);
+INSERT INTO pokemon_in_checklists(pokemon_id, checklist_id) VALUES (3, 1);
+
 COMMIT TRANSACTION;

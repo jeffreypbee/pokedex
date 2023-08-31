@@ -1,6 +1,6 @@
 <template>
   <div id="checklist-list">
-    My Checklists
+    My Checklists <button>New Checklist</button>
     <ChecklistOverview v-for="checklist in checklists" :key="`checklist-${checklist.id}`" :checklist="checklist" />
   </div>
 </template>

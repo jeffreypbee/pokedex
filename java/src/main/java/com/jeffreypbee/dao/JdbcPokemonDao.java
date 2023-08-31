@@ -40,6 +40,18 @@ public class JdbcPokemonDao implements PokemonDao {
     }
 
     @Override
+    public List<Pokemon> getPokemonInChecklist(int checklistId) {
+        List<Pokemon> list = new ArrayList<Pokemon>();
+        String sql = "SELECT id, pokedex_number, name, type1, type2 FROM pokemon WHERE id IN " +
+                "(SELECT pokemon_id FROM pokemon_in_checklists WHERE checklist_id = ?)";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, checklistId);
+        while (result.next()) {
+            list.add(mapRowSetToPokemon(result));
+        }
+        return list;
+    }
+
+    @Override
     public Pokemon addPokemon(Pokemon pokemon) {
         String sql = "INSERT INTO pokemon (id, pokedex_number, name, type1, type2) VALUES (?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, pokemon.getId(), pokemon.getPokedexNumber(), pokemon.getName(), pokemon.getType1(), pokemon.getType2());

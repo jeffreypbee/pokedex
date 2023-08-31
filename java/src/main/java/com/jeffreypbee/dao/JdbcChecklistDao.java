@@ -12,8 +12,12 @@ import java.util.List;
 public class JdbcChecklistDao implements ChecklistDao {
 
     private final JdbcTemplate jdbcTemplate;
+    private PokemonDao pokemonDao;
 
-    public JdbcChecklistDao(JdbcTemplate jdbcTemplate) { this.jdbcTemplate = jdbcTemplate; }
+    public JdbcChecklistDao(JdbcTemplate jdbcTemplate, PokemonDao pokemonDao) {
+        this.jdbcTemplate = jdbcTemplate;
+        this.pokemonDao = pokemonDao;
+    }
 
     @Override
     public List<Checklist> getAllChecklistsForUser(int userId) {
@@ -45,6 +49,7 @@ public class JdbcChecklistDao implements ChecklistDao {
         checklist.setDescription(row.getString("description"));
         checklist.setIconName(row.getString("icon_name"));
         checklist.setColor(row.getString("color"));
+        checklist.setPokemon(pokemonDao.getPokemonInChecklist(checklist.getId()));
         return checklist;
     }
 }

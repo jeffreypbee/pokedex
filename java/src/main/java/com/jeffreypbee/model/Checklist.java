@@ -1,5 +1,6 @@
 package com.jeffreypbee.model;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Checklist {
@@ -10,6 +11,7 @@ public class Checklist {
     private String description;
     private String iconName;
     private String color;
+    private List<Pokemon> pokemon;
 
     public int getId() {
         return id;
@@ -57,6 +59,14 @@ public class Checklist {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public List<Pokemon> getPokemon() {
+        return pokemon;
+    }
+
+    public void setPokemon(List<Pokemon> pokemon) {
+        this.pokemon = pokemon;
     }
 
     @Override
