@@ -4,8 +4,7 @@
     
     
     <div class="pokemon-card-sprite-container">
-      <PokemonArt :pokemon-id="pokemon.id" type="mine" class="pokemon-card-sprite" :class="{hovering: hovering}" />
-      <!--img :src="spriteSrc" class="pokemon-card-sprite" :class="{hovering : hovering}" /-->
+      <PokemonArt :pokemon-id="pokemon.id" type="official" class="pokemon-card-sprite" :class="{hovering: hovering}" />
       <div class="pokemon-card-name">{{ pokemon.name }}</div>
       <div class="pokemon-card-types">
         <font-awesome-icon :icon="`fa-solid fa-${type1.icon}`" :title="type1.name" :style="{color: type1.color}" />
