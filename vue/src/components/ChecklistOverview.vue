@@ -1,10 +1,14 @@
 <template>
-  <div>
-    <div class="checklist-header" :style="{backgroundColor: `#${checklist.color}`}">
+  <div class="checklist-overview" @click="$router.push({name: 'checklist', params: {id: checklist.id}})">
+    <div class="checklist-header">
         <font-awesome-icon :icon="`fa-solid fa-${checklist.iconName}`" :style="{color: checklist.color}" class="checklist-overview-icon" fixed-width />
-        <h3>{{ checklist.name }}</h3>
+        <div class="checklist-name">{{ checklist.name }}</div>
+        
     </div>
     
+    <div class="checklist-pkmn-count">
+        {{ checklist.pokemon.length }} Pokemon
+    </div>
     <div>
         {{ checklist.description }}
     </div>
@@ -18,29 +22,38 @@ export default {
 </script>
 
 <style>
-.checklist-header {
-    background-color: darkgray;
-    color: white;
-    text-shadow: 1px 1px 0px rgba(0, 0, 0, .4);
-    border-radius: 30px;
-    width: 500px;
-    display: flex;
-    padding: 5px;
+.checklist-overview {
+    border-radius: 20px;
+    background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
     box-shadow: 2px 5px 0px 0px rgba(0, 0, 0, .2);
-    border: 3px solid white;
+    margin: 5px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
 }
 
-.checklist-header h3 {
+.checklist-header {
+    width: 500px;
+    display: flex;
+    border-bottom: 1px solid #333;    
+}
+
+.checklist-name {
     font-size: 2rem;
     margin: 0px;
+    padding-bottom: 0px;
     margin-left: 5px;
     align-self: flex-end;
 }
 
 .checklist-overview-icon {
-    background-color: white;
-    font-size: 2rem;
-    border-radius: 50%;
+    font-size: 1.5rem;
     padding: 5px;
+}
+
+.checklist-pkmn-count {
+    color: gray;
+    align-self: flex-end;
 }
 </style>
