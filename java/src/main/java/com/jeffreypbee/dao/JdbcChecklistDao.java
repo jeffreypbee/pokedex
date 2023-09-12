@@ -41,6 +41,13 @@ public class JdbcChecklistDao implements ChecklistDao {
         return checklist;
     }
 
+    @Override
+    public Checklist addChecklist(Checklist checklist) {
+        String sql = "INSERT INTO checklists(user_id, name, description, icon_name, color) VALUES (?, ?, ?, ?, ?) RETURNING checklist_id";
+        int id = jdbcTemplate.queryForObject(sql, int.class, checklist.getUserId(), checklist.getName(), checklist.getDescription(), checklist.getIconName(), checklist.getColor());
+        return getChecklistById(id);
+    }
+
     private Checklist mapRowToChecklist(SqlRowSet row) {
         Checklist checklist = new Checklist();
         checklist.setId(row.getInt("checklist_id"));

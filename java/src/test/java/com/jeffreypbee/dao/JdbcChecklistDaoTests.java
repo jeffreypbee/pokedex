@@ -16,7 +16,7 @@ public class JdbcChecklistDaoTests extends BaseDaoTests {
     @Before
     public void setup() {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        target = new JdbcChecklistDao(jdbcTemplate);
+        target = new JdbcChecklistDao(jdbcTemplate, new JdbcPokemonDao(jdbcTemplate));
     }
 
     @Test
@@ -38,6 +38,20 @@ public class JdbcChecklistDaoTests extends BaseDaoTests {
         Checklist returned = target.getChecklistById(1);
 
         Assert.assertEquals(correct, returned);
+    }
+
+    @Test
+    public void add_checklist_works() {
+        Checklist newChecklist = new Checklist();
+        newChecklist.setUserId(1);
+        newChecklist.setName("New");
+        newChecklist.setIconName("gem");
+        newChecklist.setColor("000000");
+
+        Checklist returned = target.addChecklist(newChecklist);
+        newChecklist.setId(returned.getId());
+
+        Assert.assertEquals(newChecklist, returned);
     }
 
 }

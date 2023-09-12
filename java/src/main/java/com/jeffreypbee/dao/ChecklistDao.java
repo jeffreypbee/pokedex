@@ -10,4 +10,6 @@ public interface ChecklistDao {
 
     Checklist getChecklistById(int id);
 
+    Checklist addChecklist(Checklist checklist);
+
 }

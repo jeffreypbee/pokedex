@@ -24,4 +24,9 @@ public class ChecklistController {
         return checklistDao.getChecklistById(id);
     }
 
+    @PostMapping(path="/checklists")
+    public Checklist add(@RequestBody Checklist checklist) {
+        return checklistDao.addChecklist(checklist);
+    }
+
 }
