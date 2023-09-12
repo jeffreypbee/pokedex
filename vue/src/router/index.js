@@ -9,6 +9,7 @@ import PokedexView from '../views/PokedexView.vue'
 import PokemonDetailsView from '../views/PokemonDetailsView.vue'
 import ChecklistsView from '../views/ChecklistsView.vue'
 import ChecklistView from '../views/ChecklistView.vue'
+import AddChecklistView from '../views/AddChecklistView.vue'
 
 Vue.use(Router)
 
@@ -76,6 +77,11 @@ const router = new Router({
       path: '/checklist/:id',
       name: 'checklist',
       component: ChecklistView
+    },
+    {
+      path:'/checklists/add',
+      name: 'add-checklist',
+      component: AddChecklistView
     }
   ]
 })

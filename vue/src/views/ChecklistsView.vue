@@ -1,6 +1,6 @@
 <template>
   <div id="checklist-list">
-    My Checklists <button>New Checklist</button>
+    My Checklists <button @click.prevent="$router.push({name: 'add-checklist'})">New Checklist</button>
     <ChecklistOverview v-for="checklist in checklists" :key="`checklist-${checklist.id}`" :checklist="checklist" />
   </div>
 </template>

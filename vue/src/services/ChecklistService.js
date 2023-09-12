@@ -8,6 +8,10 @@ export default {
 
     getById(id) {
         return axios.get(`/checklists/${id}`);
+    },
+
+    add(checklist) {
+        return axios.post(`/checklists`, checklist);
     }
 
 }
